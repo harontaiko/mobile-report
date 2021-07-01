@@ -2,19 +2,20 @@
 
 <body class="home __home">
     <?php require(APPROOT . '/views/inc/navbar.php'); ?>
-    <div id="rightWrapper">
-        <div id="header"><a id="fullPage" href="#">|||</a></div>
+    <div id="rightWrapper" class="full-page">
+        <div id="header" class="full-page"><a id="fullPage" href="#">|||</a></div>
         <h2 class="top-logo">Daily Report</h2>
         <div id="contentWrapper">
             <article id="showCase">
-                <div class="article-header">Pipeline</div>
+                <div class="article-header">Pipeline - <?php echo date('F j Y', strtotime($data['date'])); ?></div>
                 <div class="resrow">
                     <div class="rescol">
                         <div class="pinkbox">
                             <br>
                             <h2>Total Sales</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">15,000/=</a>
+                            <a class="bluebutt" href="#!"
+                                target="_blank"><?php echo number_format($data['totalsales']).' ksh'; ?></a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -23,7 +24,8 @@
                             <br>
                             <h2>Movie Shop</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">5,000/=</a>
+                            <a class="bluebutt" href="#!"
+                                target="_blank"><?php echo number_format($data['movietotal']).' ksh'; ?></a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -32,7 +34,8 @@
                             <br>
                             <h2>Cyber</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">7,500/=</a>
+                            <a class="bluebutt" href="#!"
+                                target="_blank"><?php echo number_format($data['cybertotal']).' ksh'; ?></a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -41,16 +44,28 @@
                             <br>
                             <h2>Ps</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">3,000/=</a>
+                            <a class="bluebutt" href="#!"
+                                target="_blank"><?php echo number_format($data['pstotal']).' ksh'; ?></a>
                             <div class="bottri"></div>
                         </div>
                     </div>
                     <div class="rescol">
                         <div class="pinkbox">
                             <br>
-                            <h2>Ps</h2>
+                            <h2>Till Income</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">3,000/=</a>
+                            <a class="bluebutt" href="#!"
+                                target="_blank"><?php echo number_format($data['totaltill']).' ksh'; ?></a>
+                            <div class="bottri"></div>
+                        </div>
+                    </div>
+                    <div class="rescol">
+                        <div class="pinkbox">
+                            <br>
+                            <h2>Cash Income</h2>
+                            <br>
+                            <a class="bluebutt" href="#!"
+                                target="_blank"><?php echo number_format($data['totalcash']).' ksh'; ?></a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -59,7 +74,8 @@
                             <br>
                             <h2>Average Daily Cash Income</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">1,100/=</a>
+                            <a class="bluebutt" href="#!"
+                                target="_blank"><?php echo number_format($data['avgcashincome']).' ksh'; ?></a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -68,16 +84,8 @@
                             <br>
                             <h2>Average Daily Till Income</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">500/=</a>
-                            <div class="bottri"></div>
-                        </div>
-                    </div>
-                    <div class="rescol">
-                        <div class="pinkbox">
-                            <br>
-                            <h2>Average Daily Income</h2>
-                            <br>
-                            <a class="bluebutt" href="#!" target="_blank">1,200/=</a>
+                            <a class="bluebutt" href="#!"
+                                target="_blank"><?php echo number_format($data['avgtillincome']).' ksh'; ?></a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -86,7 +94,18 @@
                             <br>
                             <h2>Average Sales Income</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">3,200/=</a>
+                            <a class="bluebutt" href="#!"
+                                target="_blank"><?php echo number_format($data['avgsalesincome']).' ksh'; ?></a>
+                            <div class="bottri"></div>
+                        </div>
+                    </div>
+                    <div class="rescol">
+                        <div class="pinkbox">
+                            <br>
+                            <h2>Gross Income</h2>
+                            <br>
+                            <a class="bluebutt" href="#!"
+                                target="_blank"><?php echo number_format($data['avggrossincome']).' ksh'; ?></a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -112,7 +131,7 @@
             <article>
                 <div class="article-header">Gross Income Today</div>
                 <section>
-                    <h2><strong>1,520 ksh</strong></h2>
+                    <h2><strong><?php echo number_format($data['totalincometoday']) . ' ksh'; ?></strong></h2>
                 </section>
             </article>
         </div>

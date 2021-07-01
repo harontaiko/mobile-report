@@ -2,8 +2,8 @@
 
 <body class="movie __movie">
     <?php require(APPROOT . '/views/inc/navbar.php'); ?>
-    <div id="rightWrapper">
-        <div id="header"><a id="fullPage" href="#">|||</a></div>
+    <div id="rightWrapper" class="full-page">
+        <div id="header" class="full-page"><a id="fullPage" href="#">|||</a></div>
         <h2 class="top-logo">Gross Income</h2>
         <div id="contentWrapper">
             <article id="showCase">
@@ -14,7 +14,7 @@
                             <br>
                             <h2>Items Sold</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">10</a>
+                            <a class="bluebutt" href="#!" target="_blank">0</a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -23,7 +23,7 @@
                             <br>
                             <h2>Sales Income</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">1,690/=</a>
+                            <a class="bluebutt" href="#!" target="_blank">0</a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
                             <br>
                             <h2>Sales Profit</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">1,690/=</a>
+                            <a class="bluebutt" href="#!" target="_blank">0</a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                             <br>
                             <h2>Sales Current Gross</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">1,690/=</a>
+                            <a class="bluebutt" href="#!" target="_blank">0</a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                             <br>
                             <h2>Cyber Net Income</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">19,000ksh</a>
+                            <a class="bluebutt" href="#!" target="_blank">0</a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                             <br>
                             <h2>Ps Net Income</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">5,000ksh</a>
+                            <a class="bluebutt" href="#!" target="_blank">0</a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                             <br>
                             <h2>Movie Net Income</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">4,000ksh</a>
+                            <a class="bluebutt" href="#!" target="_blank">0</a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                             <br>
                             <h2>Total Expenses</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">4,000ksh</a>
+                            <a class="bluebutt" href="#!" target="_blank">0</a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -86,7 +86,7 @@
                             <br>
                             <h2>Out Of Stock</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">3</a>
+                            <a class="bluebutt" href="#!" target="_blank">0</a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                             <br>
                             <h2>Net Total</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">4,125ksh<img class="icon-img" loading="lazy"
+                            <a class="bluebutt" href="#!" target="_blank">0<img class="icon-img" loading="lazy"
                                     src="<?php echo URLROOT; ?>/public/images/images/check.png" alt="check"></a>
                             <div class="bottri"></div>
                         </div>

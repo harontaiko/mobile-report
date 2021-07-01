@@ -16,9 +16,40 @@ class Pages extends Controller
         ];
         redirect("users/index");
       } 
+
+      $date = date('Y-m-d', time());
+
       $db = $this->pageModel->getDatabaseConnection();
 
-      $data = ['title'=>'Daily Report', 'db'=>$db];
+      $totalsales = $this->pageModel->totalSales($date);
+      $pstotal = $this->pageModel->psTotal($date);
+      $movietotal = $this->pageModel->movieTotal($date);
+      $cybertotal = $this->pageModel->cyberTotal($date);
+      $totaltill = $this->pageModel->totalTill($date);
+      $totalcash = $this->pageModel->totalCash($date);
+      $totalincometoday = $this->pageModel->grossincome($date);
+      $averagedailycashincome = $this->pageModel->averageCashDailyIncome();
+      $averagedailytillincome = $this->pageModel->averageTillDailyIncome();
+      $averagedailysalesincome = $this->pageModel->averageSalesDailyIncome();
+      $averagedailygrossincome = $this->pageModel->averageGrossDailyIncome();
+      $averagedailyincome = $this->pageModel->averageDailyIncome();
+      $data = 
+      ['title'=>'Daily Report', 
+      'db'=>$db, 
+      'date'=>$date, 
+      'totalsales'=>$totalsales, 
+      'movietotal'=>$movietotal, 
+      'pstotal'=>$pstotal, 
+      'cybertotal'=>$cybertotal, 
+      'totaltill'=>$totaltill,
+      'totalcash'=>$totalcash,
+      'totalincometoday'=>$totalincometoday,
+      'avgdailyincome' => $averagedailyincome,
+      'avgsalesincome' => $averagedailysalesincome,
+      'avgcashincome' => $averagedailycashincome,
+      'avgtillincome' => $averagedailytillincome,
+      'avggrossincome' => $averagedailygrossincome,
+    ];
 
       $this->view('pages/index', $data);
     }

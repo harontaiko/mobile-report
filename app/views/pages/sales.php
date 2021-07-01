@@ -2,8 +2,8 @@
 
 <body class="movie __movie">
     <?php require(APPROOT . '/views/inc/navbar.php'); ?>
-    <div id="rightWrapper">
-        <div id="header"><a id="fullPage" href="#">|||</a></div>
+    <div id="rightWrapper" class="full-page">
+        <div id="header" class="full-page"><a id="fullPage" href="#">|||</a></div>
         <h2 class="top-logo">Sales</h2>
         <div id="contentWrapper">
             <article id="showCase">
@@ -14,7 +14,7 @@
                             <br>
                             <h2>Items Sold</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">10</a>
+                            <a class="bluebutt" href="#!" target="_blank">0</a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -23,7 +23,7 @@
                             <br>
                             <h2>Sales Income</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">1,690/=</a>
+                            <a class="bluebutt" href="#!" target="_blank">0</a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
                             <br>
                             <h2>Sales Profit</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">1,690/=</a>
+                            <a class="bluebutt" href="#!" target="_blank">0</a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                             <br>
                             <h2>Sales Current Gross</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">1,690/=</a>
+                            <a class="bluebutt" href="#!" target="_blank">0</a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                             <br>
                             <h2>Items In Stock</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">19</a>
+                            <a class="bluebutt" href="#!" target="_blank">0</a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -68,9 +68,8 @@
                             <br>
                             <h2>Item with highest sale</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">earphones @250 each<img class="icon-img"
-                                    loading="lazy" src="<?php echo URLROOT; ?>/public/images/images/check.png"
-                                    alt="check"></a>
+                            <a class="bluebutt" href="#!" target="_blank">N/A<img class="icon-img" loading="lazy"
+                                    src="<?php echo URLROOT; ?>/public/images/images/check.png" alt="check"></a>
                             <div class="bottri"></div>
                         </div>
                     </div>

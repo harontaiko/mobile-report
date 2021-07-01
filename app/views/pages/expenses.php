@@ -2,8 +2,8 @@
 
 <body class="movie __movie">
     <?php require(APPROOT . '/views/inc/navbar.php'); ?>
-    <div id="rightWrapper">
-        <div id="header"><a id="fullPage" href="#">|||</a></div>
+    <div id="rightWrapper" class="full-page">
+        <div id="header" class="full-page"><a id="fullPage" href="#">|||</a></div>
         <h2 class="top-logo">Expenses</h2>
         <div id="contentWrapper">
             <article id="showCase">
@@ -14,7 +14,7 @@
                             <br>
                             <h2>Expenses #</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">5</a>
+                            <a class="bluebutt" href="#!" target="_blank">0</a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -23,7 +23,7 @@
                             <br>
                             <h2>Total Amount</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">1,690/=</a>
+                            <a class="bluebutt" href="#!" target="_blank">0</a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
                             <br>
                             <h2>Losses From Expenses</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">1,690/=</a>
+                            <a class="bluebutt" href="#!" target="_blank">0</a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                             <br>
                             <h2>Average Daily Expenses</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">1,690/=</a>
+                            <a class="bluebutt" href="#!" target="_blank">0</a>
                             <div class="bottri"></div>
                         </div>
                     </div>
