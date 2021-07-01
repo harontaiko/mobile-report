@@ -16,7 +16,7 @@ define("MAIL_PORT", "465");
 
 //app route
 define('APPROOT', dirname(dirname(__FILE__)));
-//url root https://8c761d381b02.ngrok.io/principals-archive
+
 define('URLROOT', 'https://mobilereport.dailyhackstore.co.ke');
 //site name
 define('SITENAME', 'Daily Report');
