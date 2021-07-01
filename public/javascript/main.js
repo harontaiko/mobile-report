@@ -9,7 +9,7 @@
 var hostUrl = document.querySelector("link[rel='host']").getAttribute("href");
 UTIL = {
   fire: function (func, funcname, args) {
-    var namespace = dailyreport;
+    var namespace = mobilereport;
 
     funcname = funcname === undefined ? "init" : funcname;
     if (
@@ -102,8 +102,56 @@ function FilterInventory() {
 $(document).ready(UTIL.loadEvents);
 
 //BEGIN EXECUTION HERE BASED ON PAGE
-dailyreport = {
+mobilereport = {
   __home: {
-    init: function _homepage() {},
+    init: function _homepage() {
+      $(function () {
+        $("#fullPage").click(function () {
+          $("#rightWrapper").toggleClass("full-page");
+          $("#header").toggleClass("full-page");
+        });
+      });
+
+      $(function () {
+        $("#listView li").click(function () {
+          if ($("#listView li").hasClass("list-item-active")) {
+            $("#listView li").removeClass("list-item-active");
+          }
+          $(this).addClass("list-item-active");
+        });
+      });
+    },
+  },
+  __login: {
+    init: function _login() {
+      //disable password pasting
+      const pasteBox = document.getElementById("login-pwd");
+      pasteBox.onpaste = (e) => {
+        e.preventDefault();
+        return false;
+      };
+      $(".message a").click(function () {
+        $("form").animate({ height: "toggle", opacity: "toggle" }, "slow");
+      });
+    },
+  },
+  __movie: {
+    init: function _movie() {
+      $(function () {
+        $("#fullPage").click(function () {
+          $("#rightWrapper").toggleClass("full-page");
+          $("#header").toggleClass("full-page");
+        });
+      });
+
+      $(function () {
+        $("#listView li").click(function () {
+          if ($("#listView li").hasClass("list-item-active")) {
+            $("#listView li").removeClass("list-item-active");
+          }
+          $(this).addClass("list-item-active");
+        });
+      });
+    },
   },
 };
