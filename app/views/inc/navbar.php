@@ -15,5 +15,8 @@
                 <?php endif ?>><a href="<?php echo URLROOT; ?>/pages/expenses">Expenses</a></li>
             <li <?php if (strpos($_SERVER['REQUEST_URI'], "pages/net") !== false) :  ?>class="list-item-active"
                 <?php endif ?>><a href="<?php echo URLROOT; ?>/pages/net">Net</a></li>
+            <li><a href="<?php echo URLROOT; ?>/users/logout"><img
+                        src="<?php echo URLROOT; ?>/public/images/images/logout.png" class="logout-img"
+                        alt="logout"></a></li>
         </div>
     </div>

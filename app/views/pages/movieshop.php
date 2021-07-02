@@ -7,14 +7,14 @@
         <h2 class="top-logo">Movie Shop</h2>
         <div id="contentWrapper">
             <article id="showCase">
-                <div class="article-header">Movie Shop - 1st July 2020</div>
+                <div class="article-header">Movie Shop - <?php echo date('F jS Y', strtotime($data['date']));?></div>
                 <div class="resrow">
                     <div class="rescol">
                         <div class="pinkbox">
                             <br>
                             <h2>Cash Income</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">0</a>
+                            <a class="bluebutt" href="#!"><?php echo number_format($data['cash']) . ' ksh'; ?></a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -23,7 +23,7 @@
                             <br>
                             <h2>Till Income</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">0</a>
+                            <a class="bluebutt" href="#!"><?php echo number_format($data['till']) . ' ksh'; ?></a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -32,17 +32,32 @@
                             <br>
                             <h2>Total Income</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">0</a>
+                            <a class="bluebutt" href="#!"><?php echo number_format($data['total']) . ' ksh'; ?></a>
                             <div class="bottri"></div>
                         </div>
                     </div>
+                    <!--expected = currenttotal - avgmovietotal if diff is >1 total met else ifis == 0, total met else not met-->
                     <div class="rescol">
                         <div class="pinkbox">
                             <br>
                             <h2>Expected Total</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">0<img class="icon-img" loading="lazy"
+                            <?php switch(true): case $data['expected'] >1:?>
+                            <a class="bluebutt" href="#!"><?php echo number_format($data['total']) . ' ksh'; ?><img
+                                    class="icon-img" loading="lazy"
                                     src="<?php echo URLROOT; ?>/public/images/images/check.png" alt="check"></a>
+                            <?php break; ?>
+                            <?php case $data['expected']  == 0: ?>
+                            <a class="bluebutt" href="#!"><?php echo number_format($data['total']) . ' ksh'; ?><img
+                                    class="icon-img" loading="lazy"
+                                    src="<?php echo URLROOT; ?>/public/images/images/check.png" alt="check"></a>
+                            <?php break; ?>
+                            <?php case $data['expected']  < 0: ?>
+                            <a class="bluebutt" href="#!">Total is below daily average<img class="icon-img"
+                                    loading="lazy" src="<?php echo URLROOT; ?>/public/images/images/times.png"
+                                    alt="check"></a>
+                            <?php break;?>
+                            <?php endswitch ?>
                             <div class="bottri"></div>
                         </div>
                     </div>

@@ -333,8 +333,17 @@ h4 {
 }
 
 .icon-img {
-  width: 3.4%;
-  vertical-align: sub;
+  width: 4%;
+  vertical-align: unset;
+  margin-left: 0.3rem;
+}
+
+#inline-sm {
+  font-size: 0.5rem;
+}
+
+.logout-img {
+  width: 16%;
 }
 
 .input-wrapper {

@@ -14,6 +14,559 @@ class Page
       return $this->db;
     }
 
+    public function getNetTotal($date)
+    {
+        $query2 = 'SELECT SUM(total_sales + totalincome - totalexpense) AS `count` FROM dr_nettotal WHERE date_created=?';
+
+        $binders = "s";
+
+        $param = array($date);
+
+        $result2 = SelectCond($query2, $binders, $param, $this->db);
+  
+        $row2 = $result2->get_result();
+  
+        $rowItem2 = $row2->fetch_assoc();
+  
+        $itemcount = isset($rowItem2['count']) ? $rowItem2['count'] : '0';
+
+        try {
+            return $itemcount;
+        } catch (Error $e) {
+            return false;
+        } 
+    }
+
+    public function getexpenseLosses()
+    {
+        $query2 = 'SELECT SUM(expense_cost) AS `count` FROM dr_expenses WHERE expense_item!=?';
+
+        $binders = "s";
+
+        $param = array('salary');
+
+        $result2 = SelectCond($query2, $binders, $param, $this->db);
+  
+        $row2 = $result2->get_result();
+  
+        $rowItem2 = $row2->fetch_assoc();
+  
+        $itemcount = isset($rowItem2['count']) ? $rowItem2['count'] : '0';
+
+        try {
+            return $itemcount;
+        } catch (Error $e) {
+            return false;
+        } 
+    }
+
+    public function getexpenseCount($date)
+    {
+        $query2 = 'SELECT COUNT(expense_id) AS `count` FROM dr_expenses WHERE date_created=?';
+
+        $binders = "s";
+
+        $param = array($date);
+
+        $result2 = SelectCond($query2, $binders, $param, $this->db);
+  
+        $row2 = $result2->get_result();
+  
+        $rowItem2 = $row2->fetch_assoc();
+  
+        $itemcount = isset($rowItem2['count']) ? $rowItem2['count'] : '0';
+
+        try {
+            return $itemcount;
+        } catch (Error $e) {
+            return false;
+        } 
+    }
+
+    public function getItemsHighestSale($date)
+    {
+        $query2 = 'SELECT MAX(selling_price) AS `count`, sales_item FROM dr_sales WHERE date_created=?';
+
+        $binders = "s";
+
+        $param = array($date);
+
+        $result2 = SelectCond($query2, $binders, $param, $this->db);
+  
+        $row2 = $result2->get_result();
+
+        try {
+            return $row2;
+        } catch (Error $e) {
+            return false;
+        } 
+    }
+
+    public function getItemsCreated($date)
+    {
+        $query2 = 'SELECT COUNT(item_id) AS `count` FROM dr_inventory WHERE date_created=?';
+
+        $binders = "s";
+
+        $param = array($date);
+
+        $result2 = SelectCond($query2, $binders, $param, $this->db);
+  
+        $row2 = $result2->get_result();
+  
+        $rowItem2 = $row2->fetch_assoc();
+  
+        $itemcount = isset($rowItem2['count']) ? $rowItem2['count'] : '0';
+
+        try {
+            return $itemcount;
+        } catch (Error $e) {
+            return false;
+        } 
+    }
+
+    public function stockCount()
+    {
+        $query1 = 'SELECT COUNT(sales_id) AS salescount FROM dr_sales';
+
+        $result1 = SelectCondFree($query1, 'dr_sales', $this->db);
+  
+        $row1 = $result1->get_result();
+  
+        $rowItem1 = $row1->fetch_assoc();
+  
+        $salescount = isset($rowItem1['salescount']) ? $rowItem1['salescount'] : '0';
+        //mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+        $query2 = 'SELECT SUM(item_quantity) AS `count` FROM dr_inventory';
+
+        $result2 = SelectCondFree($query2, 'dr_inventory', $this->db);
+  
+        $row2 = $result2->get_result();
+  
+        $rowItem2 = $row2->fetch_assoc();
+  
+        $itemcount = isset($rowItem2['count']) ? $rowItem2['count'] : '0';
+  
+        try {
+            return $itemcount - $salescount;
+        } catch (Error $e) {
+            return false;
+        } 
+    }
+
+    public function GrossIncomeStation($station)
+    {
+        $station == "movie";
+        switch($station){
+            case 'movie':
+            $query = 'SELECT SUM(till+cash) AS total FROM dr_movieshop';
+      
+            $result = SelectCondFree($query, 'dr_movieshop', $this->db);
+      
+            $row = $result->get_result();
+      
+            $rowItem = $row->fetch_assoc();
+      
+            $totalsales = isset($rowItem['total']) ? $rowItem['total'] : '0';
+      
+            try {
+                return $totalsales;
+            } catch (Error $e) {
+                return false;
+            } 
+            break;
+            case 'ps':
+            $query = 'SELECT SUM(till+cash) AS total FROM dr_playstation';
+      
+            $result = SelectCondFree($query, 'dr_playstation', $this->db);
+      
+            $row = $result->get_result();
+      
+            $rowItem = $row->fetch_assoc();
+      
+            $totalsales = isset($rowItem['total']) ? $rowItem['total'] : '0';
+      
+            try {
+                return $totalsales;
+            } catch (Error $e) {
+                return false;
+            } 
+            break;
+            case 'cyber':
+            $query = 'SELECT SUM(till+cash) AS total FROM dr_cybershop';
+      
+            $result = SelectCondFree($query, 'dr_cybershop', $this->db);
+      
+            $row = $result->get_result();
+      
+            $rowItem = $row->fetch_assoc();
+      
+            $totalsales = isset($rowItem['total']) ? $rowItem['total'] : '0';
+      
+            try {
+                return $totalsales;
+            } catch (Error $e) {
+                return false;
+            } 
+            break;
+            case 'sales':
+            $query = 'SELECT SUM(selling_price) AS total FROM dr_sales';
+      
+            $result = SelectCondFree($query, 'dr_sales', $this->db);
+      
+            $row = $result->get_result();
+      
+            $rowItem = $row->fetch_assoc();
+      
+            $totalsales = isset($rowItem['total']) ? $rowItem['total'] : '0';
+      
+            try {
+                return $totalsales;
+            } catch (Error $e) {
+                return false;
+            } 
+            break;
+            default:
+            return false;
+        }
+    }
+
+    public function getSalesDetails($date)
+    {
+        $query = 'SELECT COUNT(sales_id) AS itemssold, SUM(selling_price) AS salesincome, SUM(profit) AS salesprofit FROM dr_sales WHERE date_created = ?';
+
+        $binders = "s";
+
+        $param = array($date);
+
+        $result = SelectCond($query, $binders, $param, $this->db);
+  
+        $row = $result->get_result();
+
+        try {
+            return $row;
+        } catch (Error $e) {
+            return false;
+        } 
+    }
+
+
+    public function avgtotalIncomeStation($station)
+    {
+        $station == "movie";
+        switch($station){
+            case 'movie':
+            $query = 'SELECT AVG(till+cash) AS total FROM dr_movieshop GROUP BY DATE_SUB(NOW(), INTERVAL 1 DAY)';
+
+            $result = SelectCondFree($query, 'dr_movieshop', $this->db);
+      
+            $row = $result->get_result();
+      
+            $rowItem = $row->fetch_assoc();
+      
+            $totalsales = isset($rowItem['total']) ? $rowItem['total'] : '0';
+      
+            try {
+                return $totalsales;
+            } catch (Error $e) {
+                return false;
+            } 
+            break;
+            case 'ps':
+            //mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+            $query = 'SELECT AVG(till+cash) AS total FROM dr_playstation GROUP BY DATE_SUB(NOW(), INTERVAL 1 DAY)';
+      
+            $result = SelectCondFree($query, 'dr_playstation', $this->db);
+      
+            $row = $result->get_result();
+      
+            $rowItem = $row->fetch_assoc();
+      
+            $totalsales = isset($rowItem['total']) ? $rowItem['total'] : '0';
+      
+            try {
+                return $totalsales;
+            } catch (Error $e) {
+                return false;
+            } 
+            break;
+            case 'cyber':
+            $query = 'SELECT AVG(till+cash) AS total FROM dr_cybershop GROUP BY DATE_SUB(NOW(), INTERVAL 1 DAY)';
+      
+            $result = SelectCondFree($query, 'dr_cybershop', $this->db);
+      
+            $row = $result->get_result();
+      
+            $rowItem = $row->fetch_assoc();
+      
+            $totalsales = isset($rowItem['total']) ? $rowItem['total'] : '0';
+      
+            try {
+                return $totalsales;
+            } catch (Error $e) {
+                return false;
+            } 
+            break;
+            case 'expenses':
+            $query = 'SELECT AVG(expense_cost) AS total FROM dr_expenses GROUP BY DATE_SUB(NOW(), INTERVAL 1 DAY)';
+      
+            $result = SelectCondFree($query, 'dr_expenses', $this->db);
+      
+            $row = $result->get_result();
+      
+            $rowItem = $row->fetch_assoc();
+      
+            $totalsales = isset($rowItem['total']) ? $rowItem['total'] : '0';
+      
+            try {
+                return $totalsales;
+            } catch (Error $e) {
+                return false;
+            } 
+            break;
+            default:
+            return false;
+        }
+    }
+
+    public function totalIncomeStation($station, $date)
+    {
+        $station == "movie";
+        switch($station){
+            case 'movie':
+            $query = 'SELECT SUM(till+cash) AS total FROM dr_movieshop WHERE date_created=?';
+
+            $binders= "s";
+      
+            $param = array($date);
+      
+            $result = SelectCond($query, $binders, $param, $this->db);
+      
+            $row = $result->get_result();
+      
+            $rowItem = $row->fetch_assoc();
+      
+            $totalsales = isset($rowItem['total']) ? $rowItem['total'] : '0';
+      
+            try {
+                return $totalsales;
+            } catch (Error $e) {
+                return false;
+            } 
+            break;
+            case 'ps':
+            $query = 'SELECT SUM(till+cash) AS total FROM dr_playstation WHERE date_created=?';
+
+            $binders= "s";
+      
+            $param = array($date);
+      
+            $result = SelectCond($query, $binders, $param, $this->db);
+      
+            $row = $result->get_result();
+      
+            $rowItem = $row->fetch_assoc();
+      
+            $totalsales = isset($rowItem['total']) ? $rowItem['total'] : '0';
+      
+            try {
+                return $totalsales;
+            } catch (Error $e) {
+                return false;
+            } 
+            break;
+            case 'cyber':
+            $query = 'SELECT SUM(till+cash) AS total FROM dr_cybershop WHERE date_created=?';
+
+            $binders= "s";
+      
+            $param = array($date);
+      
+            $result = SelectCond($query, $binders, $param, $this->db);
+      
+            $row = $result->get_result();
+      
+            $rowItem = $row->fetch_assoc();
+      
+            $totalsales = isset($rowItem['total']) ? $rowItem['total'] : '0';
+      
+            try {
+                return $totalsales;
+            } catch (Error $e) {
+                return false;
+            } 
+            break;
+            case 'expenses':
+            $query = 'SELECT SUM(expense_cost) AS total FROM dr_expenses WHERE date_created=?';
+
+            $binders= "s";
+      
+            $param = array($date);
+      
+            $result = SelectCond($query, $binders, $param, $this->db);
+      
+            $row = $result->get_result();
+      
+            $rowItem = $row->fetch_assoc();
+      
+            $totalsales = isset($rowItem['total']) ? $rowItem['total'] : '0';
+      
+            try {
+                return $totalsales;
+            } catch (Error $e) {
+                return false;
+            } 
+            break;
+            default:
+            return false;
+        }
+    }
+
+
+    public function tillIncomeStation($station, $date)
+    {
+        $station == "movie";
+        switch($station){
+            case 'movie':
+            $query = 'SELECT till FROM dr_movieshop WHERE date_created=?';
+
+            $binders= "s";
+      
+            $param = array($date);
+      
+            $result = SelectCond($query, $binders, $param, $this->db);
+      
+            $row = $result->get_result();
+      
+            $rowItem = $row->fetch_assoc();
+      
+            $totalsales = isset($rowItem['till']) ? $rowItem['till'] : '0';
+      
+            try {
+                return $totalsales;
+            } catch (Error $e) {
+                return false;
+            } 
+            break;
+            case 'ps':
+            $query = 'SELECT till FROM dr_playstation WHERE date_created=?';
+
+            $binders= "s";
+      
+            $param = array($date);
+      
+            $result = SelectCond($query, $binders, $param, $this->db);
+      
+            $row = $result->get_result();
+      
+            $rowItem = $row->fetch_assoc();
+      
+            $totalsales = isset($rowItem['till']) ? $rowItem['till'] : '0';
+      
+            try {
+                return $totalsales;
+            } catch (Error $e) {
+                return false;
+            } 
+            break;
+            case 'cyber':
+            $query = 'SELECT till FROM dr_cybershop WHERE date_created=?';
+
+            $binders= "s";
+      
+            $param = array($date);
+      
+            $result = SelectCond($query, $binders, $param, $this->db);
+      
+            $row = $result->get_result();
+      
+            $rowItem = $row->fetch_assoc();
+      
+            $totalsales = isset($rowItem['till']) ? $rowItem['till'] : '0';
+      
+            try {
+                return $totalsales;
+            } catch (Error $e) {
+                return false;
+            } 
+            break;
+            default:
+            return false;
+        }
+    }
+
+    public function cashIncomeStation($station, $date)
+    {
+        $station == "movie";
+        switch($station){
+            case 'movie':
+            $query = 'SELECT cash FROM dr_movieshop WHERE date_created=?';
+
+            $binders= "s";
+      
+            $param = array($date);
+      
+            $result = SelectCond($query, $binders, $param, $this->db);
+      
+            $row = $result->get_result();
+      
+            $rowItem = $row->fetch_assoc();
+      
+            $totalsales = isset($rowItem['cash']) ? $rowItem['cash'] : '0';
+      
+            try {
+                return $totalsales;
+            } catch (Error $e) {
+                return false;
+            } 
+            break;
+            case 'ps':
+            $query = 'SELECT cash FROM dr_playstation WHERE date_created=?';
+
+            $binders= "s";
+      
+            $param = array($date);
+      
+            $result = SelectCond($query, $binders, $param, $this->db);
+      
+            $row = $result->get_result();
+      
+            $rowItem = $row->fetch_assoc();
+      
+            $totalsales = isset($rowItem['cash']) ? $rowItem['cash'] : '0';
+      
+            try {
+                return $totalsales;
+            } catch (Error $e) {
+                return false;
+            } 
+            break;
+            case 'cyber':
+            $query = 'SELECT cash FROM dr_cybershop WHERE date_created=?';
+
+            $binders= "s";
+      
+            $param = array($date);
+      
+            $result = SelectCond($query, $binders, $param, $this->db);
+      
+            $row = $result->get_result();
+      
+            $rowItem = $row->fetch_assoc();
+      
+            $totalsales = isset($rowItem['cash']) ? $rowItem['cash'] : '0';
+      
+            try {
+                return $totalsales;
+            } catch (Error $e) {
+                return false;
+            } 
+            break;
+            default:
+            return false;
+        }
+    }
+
     public function grossincome($date)
     {
       $query = 'SELECT AVG(total_sales + totalincome - totalexpense) AS totalincome FROM dr_nettotal WHERE date_created=?';
@@ -32,6 +585,29 @@ class Page
 
       try {
           return $avgsales;
+      } catch (Error $e) {
+          return false;
+      } 
+    }
+
+    public function profitSales($date)
+    {
+      $query = 'SELECT totalprofit FROM dr_nettotal WHERE date_created=?';
+
+      $binders= "s";
+
+      $param = array($date);
+
+      $result = SelectCond($query, $binders, $param, $this->db);
+
+      $row = $result->get_result();
+
+      $rowItem = $row->fetch_assoc();
+
+      $totalsales = isset($rowItem['totalprofit']) ? $rowItem['totalprofit'] : '0';
+
+      try {
+          return $totalsales;
       } catch (Error $e) {
           return false;
       } 

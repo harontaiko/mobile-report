@@ -7,14 +7,15 @@
         <h2 class="top-logo">Gross Income</h2>
         <div id="contentWrapper">
             <article id="showCase">
-                <div class="article-header">Gross Income - 1st July 2020</div>
+                <div class="article-header">Gross Income - <?php echo date('F jS Y', strtotime($data['date']));?></div>
                 <div class="resrow">
                     <div class="rescol">
                         <div class="pinkbox">
                             <br>
                             <h2>Items Sold</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">0</a>
+                            <a class="bluebutt"
+                                href="#!"><?php echo number_format($data['sales']['0']['itemssold']) . ' items'; ?></a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -23,7 +24,8 @@
                             <br>
                             <h2>Sales Income</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">0</a>
+                            <a class="bluebutt"
+                                href="#!"><?php echo number_format($data['sales']['0']['salesincome']) . ' ksh'; ?></a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -32,7 +34,8 @@
                             <br>
                             <h2>Sales Profit</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">0</a>
+                            <a class="bluebutt"
+                                href="#!"><?php echo number_format($data['sales']['0']['salesprofit']) . ' ksh'; ?></a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -41,7 +44,7 @@
                             <br>
                             <h2>Sales Current Gross</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">0</a>
+                            <a class="bluebutt" href="#!"><?php echo number_format($data['salesgross']) . ' ksh'; ?></a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -50,7 +53,7 @@
                             <br>
                             <h2>Cyber Net Income</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">0</a>
+                            <a class="bluebutt" href="#!"><?php echo number_format($data['cyber']) . ' ksh'; ?></a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -59,7 +62,7 @@
                             <br>
                             <h2>Ps Net Income</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">0</a>
+                            <a class="bluebutt" href="#!"><?php echo number_format($data['ps']) . ' ksh'; ?></a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -68,7 +71,7 @@
                             <br>
                             <h2>Movie Net Income</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">0</a>
+                            <a class="bluebutt" href="#!"><?php echo number_format($data['movie']) . ' ksh'; ?></a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -77,7 +80,7 @@
                             <br>
                             <h2>Total Expenses</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">0</a>
+                            <a class="bluebutt" href="#!"><?php echo number_format($data['expenses']) . ' ksh'; ?></a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -86,7 +89,7 @@
                             <br>
                             <h2>Out Of Stock</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">0</a>
+                            <a class="bluebutt" href="#!">N/A</a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -95,7 +98,8 @@
                             <br>
                             <h2>Net Total</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">0<img class="icon-img" loading="lazy"
+                            <a class="bluebutt" href="#!"><?php echo number_format($data['net']) . ' ksh'; ?><img
+                                    class="icon-img" loading="lazy"
                                     src="<?php echo URLROOT; ?>/public/images/images/check.png" alt="check"></a>
                             <div class="bottri"></div>
                         </div>

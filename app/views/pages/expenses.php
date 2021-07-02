@@ -7,14 +7,14 @@
         <h2 class="top-logo">Expenses</h2>
         <div id="contentWrapper">
             <article id="showCase">
-                <div class="article-header">Expenses - 1st July 2020</div>
+                <div class="article-header">Expenses - <?php echo date('F jS Y', strtotime($data['date']));?></div>
                 <div class="resrow">
                     <div class="rescol">
                         <div class="pinkbox">
                             <br>
                             <h2>Expenses #</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">0</a>
+                            <a class="bluebutt" href="#!"><?php echo number_format($data['count']) . ' expenses'; ?></a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -23,16 +23,17 @@
                             <br>
                             <h2>Total Amount</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">0</a>
+                            <a class="bluebutt" href="#!"><?php echo number_format($data['amount']) . ' ksh'; ?></a>
                             <div class="bottri"></div>
                         </div>
                     </div>
                     <div class="rescol">
                         <div class="pinkbox">
                             <br>
-                            <h2>Losses From Expenses</h2>
+                            <h2>Total Losses From Expenses</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">0</a>
+                            <a class="bluebutt" href="#!"><?php echo number_format($data['losses']) . ' ksh'; ?> <p
+                                    id="inline-sm">*excluding salary</p></a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -41,7 +42,7 @@
                             <br>
                             <h2>Average Daily Expenses</h2>
                             <br>
-                            <a class="bluebutt" href="#!" target="_blank">0</a>
+                            <a class="bluebutt" href="#!"><?php echo number_format($data['avg']) . ' ksh'; ?> </a>
                             <div class="bottri"></div>
                         </div>
                     </div>
