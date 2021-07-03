@@ -159,6 +159,7 @@ class Pages extends Controller
       $sales = $this->pageModel->getSalesDetails($this->date);
       $currentnet = $this->pageModel->GrossIncomeStation('sales');
       $instock = $this->pageModel->stockCount();
+      $outstock = $this->pageModel->outStock();
       $created = $this->pageModel->getItemsCreated($this->date);
       $highestSale = $this->pageModel->getItemsHighestSale($this->date);
 
@@ -182,6 +183,7 @@ class Pages extends Controller
       'sales'=>$arr,
       'currentnet'=>$currentnet,
       'instock'=>$instock,
+      'outstock'=>$outstock,
       'created'=>$created,
       'high'=>$arr2
       ];

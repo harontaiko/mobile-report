@@ -17,6 +17,7 @@ class User
      // Find user by username
      public function findUserByName($username)
      {
+      mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
          $query = 'SELECT `user_id`, username, email, `password`, is_admin, date_created, time_created, created_by, creator_ip FROM dr_user WHERE username = ?';
  
          $binders = "s";

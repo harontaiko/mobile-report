@@ -54,8 +54,18 @@
                         <div class="pinkbox">
                             <br>
                             <h2>Items In Stock</h2>
-                            <br><?php echo(number_format($data['instock'])) . ' items'; ?>
-                            <a class="bluebutt" href="#!"></a>
+                            <br>
+                            <a class="bluebutt" href="#!"><?php echo(number_format($data['instock'])) . ' items'; ?></a>
+                            <div class="bottri"></div>
+                        </div>
+                    </div>
+                    <div class="rescol">
+                        <div class="pinkbox">
+                            <br>
+                            <h2>Items out of Stock</h2>
+                            <br>
+                            <a class="bluebutt"
+                                href="#!"><?php echo(number_format($data['outstock'])) . ' items'; ?></a>
                             <div class="bottri"></div>
                         </div>
                     </div>
