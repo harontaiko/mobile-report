@@ -101,24 +101,117 @@ function FilterInventory() {
 // kick it all off here
 $(document).ready(UTIL.loadEvents);
 
+function ToggleMenu() {
+  $(function () {
+    $("#fullPage").click(function () {
+      $("#rightWrapper").toggleClass("full-page");
+      $("#header").toggleClass("full-page");
+      $(".top-logo").toggleClass("hide");
+    });
+  });
+
+  $(function () {
+    $("#listView li").click(function () {
+      if ($("#listView li").hasClass("list-item-active")) {
+        $("#listView li").removeClass("list-item-active");
+      }
+      $(this).addClass("list-item-active");
+    });
+  });
+}
+
+function daysRepo(selectId, hostpageClass, hostpageName) {
+  var daysoptions = document.getElementById(`${selectId}`);
+
+  daysoptions.addEventListener("change", function loadrepo() {
+    currentOption = daysoptions.value;
+    currentOptionText = this.options[this.selectedIndex].value;
+    if (currentOptionText === "today") {
+      //refocus page
+      $(`${hostpageClass}`).animate({ opacity: 0 }, 1000);
+      $(`${hostpageClass}`).animate({ opacity: 1 }, 1000);
+      sleep(4700).then(() => {
+        $(`${hostpageClass}`).animate({ opacity: 0 }, 0);
+        $(`${hostpageClass}`).animate({ opacity: 1 }, 0);
+      });
+    } else {
+      location.replace(
+        `${hostUrl}/pages/daysrepo/${hostpageName}/${currentOptionText}`
+      );
+    }
+  });
+}
+
 //BEGIN EXECUTION HERE BASED ON PAGE
 mobilereport = {
   __home: {
     init: function _homepage() {
-      $(function () {
-        $("#fullPage").click(function () {
-          $("#rightWrapper").toggleClass("full-page");
-          $("#header").toggleClass("full-page");
-        });
-      });
+      ToggleMenu();
+      //yesterday report, 4 today, refocus page
+      daysRepo("run", ".home", "home");
+    },
+  },
+  __movie: {
+    init: function _movie() {
+      ToggleMenu();
+      daysRepo("run", ".movie", "movie");
+    },
+  },
+  __cyber: {
+    init: function _cyber() {
+      ToggleMenu();
+      daysRepo("run", ".cyber", "cyber");
+    },
+  },
+  __net: {
+    init: function _net() {
+      ToggleMenu();
+      daysRepo("run", ".net", "net");
+    },
+  },
+  __sales: {
+    init: function _sales() {
+      ToggleMenu();
+      daysRepo("run", ".sales", "sales");
+    },
+  },
+  __expense: {
+    init: function _expense() {
+      ToggleMenu();
+      daysRepo("run", ".expense", "expense");
+    },
+  },
+  __ps: {
+    init: function _ps() {
+      ToggleMenu();
+      daysRepo("run", ".ps", "ps");
+    },
+  },
+  __daysrepo: {
+    init: function _ps() {
+      ToggleMenu();
+      var lastpage = document.getElementById("last-page").value;
 
-      $(function () {
-        $("#listView li").click(function () {
-          if ($("#listView li").hasClass("list-item-active")) {
-            $("#listView li").removeClass("list-item-active");
-          }
-          $(this).addClass("list-item-active");
-        });
+      var daysoptions = document.getElementById(`run`);
+
+      daysoptions.addEventListener("change", function loadrepo() {
+        currentOption = daysoptions.value;
+        currentOptionText = this.options[this.selectedIndex].value;
+        if (lastpage === "home") {
+          location.replace(`${hostUrl}/pages/index`);
+        } else if (lastpage === "movie") {
+          location.replace(`${hostUrl}/pages/movieshop`);
+        } else if (lastpage === "ps") {
+          location.replace(`${hostUrl}/pages/ps`);
+        } else if (lastpage === "cyber") {
+          location.replace(`${hostUrl}/pages/cyber`);
+        } else if (lastpage === "expense") {
+          location.replace(`${hostUrl}/pages/expenses`);
+        } else if (lastpage === "sales") {
+          location.replace(`${hostUrl}/pages/sales`);
+        } else if (lastpage === "net") {
+          location.replace(`${hostUrl}/pages/net`);
+        }
       });
     },
   },
@@ -132,25 +225,6 @@ mobilereport = {
       };
       $(".message a").click(function () {
         $("form").animate({ height: "toggle", opacity: "toggle" }, "slow");
-      });
-    },
-  },
-  __movie: {
-    init: function _movie() {
-      $(function () {
-        $("#fullPage").click(function () {
-          $("#rightWrapper").toggleClass("full-page");
-          $("#header").toggleClass("full-page");
-        });
-      });
-
-      $(function () {
-        $("#listView li").click(function () {
-          if ($("#listView li").hasClass("list-item-active")) {
-            $("#listView li").removeClass("list-item-active");
-          }
-          $(this).addClass("list-item-active");
-        });
       });
     },
   },

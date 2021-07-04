@@ -7,6 +7,11 @@
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
 html,
 body {
   margin: 0;
@@ -225,12 +230,34 @@ section {
 }
 
 .top-logo {
-  position: relative;
+  position: fixed;
   z-index: 1000000;
   margin-left: 1.5rem;
   margin-top: 1rem;
   width: auto;
   font-size: 1.35rem;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.logout-top {
+  float: right;
+  z-index: 100000;
+  position: fixed;
+  margin-right: 2rem;
+  right: 0;
+  top: 1%;
+  padding: 7px;
+  background: #e42626;
+  border-radius: 4px;
+  color: #fff;
+  vertical-align: super;
 }
 
 #home-img {
@@ -351,7 +378,8 @@ h4 {
   margin-bottom: 1rem;
 }
 
-.input-wrapper input {
+.input-wrapper input,
+select {
   width: 100%;
   height: auto;
 }
@@ -368,4 +396,97 @@ h4 {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.__notFound {
+  background-color: #2f3242;
+  width: 100%;
+  height: auto;
+  padding: 6rem;
+}
+svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -250px;
+  margin-left: -400px;
+}
+.message-box {
+  height: 200px;
+  width: 380px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: 50px;
+  color: #fff;
+  font-family: Roboto;
+  font-weight: 300;
+}
+.message-box h1 {
+  font-size: 60px;
+  line-height: 46px;
+  margin-bottom: 40px;
+}
+.buttons-con .action-link-wrap {
+  margin-top: 40px;
+}
+.buttons-con .action-link-wrap a {
+  background: #68c950;
+  padding: 8px 25px;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+  transition: all 0.3s linear;
+  cursor: pointer;
+  text-decoration: none;
+  margin-right: 10px;
+}
+.buttons-con .action-link-wrap a:hover {
+  background: #5a5c6c;
+  color: #fff;
+}
+
+#Polygon-1,
+#Polygon-2,
+#Polygon-3,
+#Polygon-4,
+#Polygon-4,
+#Polygon-5 {
+  animation: float 1s infinite ease-in-out alternate;
+}
+#Polygon-2 {
+  animation-delay: 0.2s;
+}
+#Polygon-3 {
+  animation-delay: 0.4s;
+}
+#Polygon-4 {
+  animation-delay: 0.6s;
+}
+#Polygon-5 {
+  animation-delay: 0.8s;
+}
+
+@keyframes float {
+  100% {
+    transform: translateY(20px);
+  }
+}
+@media (max-width: 450px) {
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -250px;
+    margin-left: -190px;
+  }
+  .message-box {
+    top: 50%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -190px;
+    text-align: center;
+  }
 }

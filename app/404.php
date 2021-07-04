@@ -8,12 +8,18 @@
     <meta http-equiv="Cache-control" content="private">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="Cache-control" content="no-store">
-    <link rel="canonical" href="<?php echo "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>" />
-    <meta name="og:url" content="<?php echo "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>" />
-    <link rel="stylesheet" href="<?php echo URLROOT; ?>/public/stylesheets/css/style.css" />
-    <link rel="icon" href="<?php echo URLROOT; ?>/public/images/icons/dailyhackstore.ico" type="image/ico" />
-    <link rel="shortcut icon" href="<?php echo URLROOT; ?>/public/images/icons/dailyhackstore.ico" type="image/ico" />
-    <title>Daily Report - Page Not Found </title>
+    <link rel="host" href="http://localhost/dailyreport-mobile">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Palanquin:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="http://localhost/dailyreport-mobile/public/stylesheets/css/style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="icon" href="http://localhost/dailyreport-mobile/public/images/images/dailyhackstore.ico"
+        type="image/ico" />
+    <link rel="shortcut icon" href="http://localhost/dailyreport-mobile/public/images/images/dailyhackstore.ico"
+        type="image/ico" />
+    <title>Report - Not Found</title>
 </head>
 
 <body class="notFound __notFound">

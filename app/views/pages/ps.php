@@ -1,13 +1,22 @@
 <?php require(APPROOT . '/views/inc/header.php'); ?>
 
-<body class="movie __movie">
+<body class="ps __ps">
     <?php require(APPROOT . '/views/inc/navbar.php'); ?>
     <div id="rightWrapper" class="full-page">
         <div id="header" class="full-page"><a id="fullPage" href="#">|||</a></div>
-        <h2 class="top-logo">Ps</h2>
+        <h2 class="top-logo show">Ps</h2>
+        <h3 class="logout-top"><a href="<?php echo URLROOT; ?>/users/logout">logout</a></h3>
         <div id="contentWrapper">
             <article id="showCase">
                 <div class="article-header">Ps - <?php echo date('F jS Y', strtotime($data['date']));?></div>
+                <div class="input-wrapper">
+                    <label for="from"><strong>Run</strong></label>
+                    <select name="run" id="run">
+                        <option value="run">select</option>
+                        <option value="yesterday">yesterday</option>
+                        <option value="today">today</option>
+                    </select>
+                </div>
                 <div class="resrow">
                     <div class="rescol">
                         <div class="pinkbox">
