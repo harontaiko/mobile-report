@@ -124,7 +124,7 @@
                 </div>
                 <div class="input-wrapper">
                     <label for="to"><strong>To</strong></label>
-                    <input type="date" name="from" id="from">
+                    <input type="date" name="to" id="to">
                 </div>
                 <div class="input-wrapper">
                     <button value="Get" id="filter-sales">filter report</button>

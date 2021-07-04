@@ -30,4 +30,25 @@ Inventory management and daily record keeping system, built on PHP OOP and Js, D
 - left on editing main record
 
 - error items in stock
-- use switch instead of elseif
+
+```
+    <?php switch($data['title']): case 'movie':?>
+    <?php include APPROOT .'/views/datesfilter/movieReport.php'; ?>
+    <?php break;?>
+    <?php case 'ps': ?>
+    <?php include APPROOT .'/views/datesfilter/psReport.php'; ?>
+    <?php break;?>
+    <?php case 'cyber': ?>
+    <?php include APPROOT .'/views/datesfilter/cyberReport.php'; ?>
+    <?php break;?>
+    <?php case 'sales': ?>
+    <?php include APPROOT .'/views/datesfilter/salesReport.php'; ?>
+    <?php break;?>
+    <?php case 'expense': ?>
+    <?php include APPROOT .'/views/datesfilter/expenseReport.php'; ?>
+    <?php break;?>
+    <?php case 'net': ?>
+    <?php include APPROOT .'/views/datesfilter/netReport.php'; ?>
+    <?php break;?>
+    <?php endswitch; ?>
+```

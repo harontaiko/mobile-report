@@ -9,6 +9,34 @@ class Pages extends Controller
       $this->date = date('Y-m-d', time());
     }
 
+    public function date($hostpage, $date, $date2)
+    {
+      $this->checkLoginState();
+      if(isset($hostpage) && isset($date) && isset($date2))
+      {
+        $validpages = ['home', 'ps', 'cyber', 'net', 'expense', 'sales', 'movie'];
+        $validdays = ['yesterday'];
+        if(in_array($hostpage, $validpages))
+        {
+          $db = $this->pageModel->getDatabaseConnection();
+
+            $data = 
+            ['title'=>$hostpage, 
+            'db'=>$db, 
+            'date'=>$date,
+            'date2'=>$date2, 
+          ];
+
+        $this->view('pages/date', $data);
+        }
+        else{
+          $this->error404();
+        }
+
+      }else{
+       $this->error404();
+      }
+    }
     public function daysrepo($hostpage, $day)
     {
       $this->checkLoginState();

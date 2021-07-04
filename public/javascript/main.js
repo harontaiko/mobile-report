@@ -120,6 +120,21 @@ function ToggleMenu() {
   });
 }
 
+function outsideClick(event, notelem) {
+  notelem = $(notelem); // jquerize (optional)
+  // check outside click for multiple elements
+  var clickedOut = true,
+    i,
+    len = notelem.length;
+  for (i = 0; i < len; i++) {
+    if (event.target == notelem[i] || notelem[i].contains(event.target)) {
+      clickedOut = false;
+    }
+  }
+  if (clickedOut) return true;
+  else return false;
+}
+
 function daysRepo(selectId, hostpageClass, hostpageName) {
   var daysoptions = document.getElementById(`${selectId}`);
 
@@ -142,6 +157,31 @@ function daysRepo(selectId, hostpageClass, hostpageName) {
   });
 }
 
+function datesRepo(triggerId, date1Id, date2Id, pageName) {
+  document.getElementById(`${triggerId}`).addEventListener("click", () => {
+    //validate dates
+    var date1 = document.getElementById(`${date1Id}`);
+    var date2 = document.getElementById(`${date2Id}`);
+    if (date1.value !== "" && date2.value !== "") {
+      //submit
+      location.replace(
+        `${hostUrl}/pages/date/${pageName}/${date1.value}/${date2.value}`
+      );
+    } else {
+      date1.style.border = "2px solid red";
+      date1.style.outline = "none";
+      date2.style.border = "2px solid red";
+      date2.style.outline = "none";
+      sleep(2500).then(() => {
+        date1.style.border = "";
+        date1.style.outline = "";
+        date2.style.border = "";
+        date2.style.outline = "";
+      });
+    }
+  });
+}
+
 //BEGIN EXECUTION HERE BASED ON PAGE
 mobilereport = {
   __home: {
@@ -155,36 +195,64 @@ mobilereport = {
     init: function _movie() {
       ToggleMenu();
       daysRepo("run", ".movie", "movie");
+      datesRepo("filter-movie", "from", "to", "movie");
     },
   },
   __cyber: {
     init: function _cyber() {
       ToggleMenu();
       daysRepo("run", ".cyber", "cyber");
+      datesRepo("filter-cyber", "from", "to", "cyber");
     },
   },
   __net: {
     init: function _net() {
       ToggleMenu();
       daysRepo("run", ".net", "net");
+      datesRepo("filter-net", "from", "to", "net");
     },
   },
   __sales: {
     init: function _sales() {
       ToggleMenu();
       daysRepo("run", ".sales", "sales");
+      datesRepo("filter-sales", "from", "to", "sales");
     },
   },
   __expense: {
     init: function _expense() {
       ToggleMenu();
       daysRepo("run", ".expense", "expense");
+      datesRepo("filter-expense", "from", "to", "expense");
     },
   },
   __ps: {
     init: function _ps() {
       ToggleMenu();
       daysRepo("run", ".ps", "ps");
+      datesRepo("filter-ps", "from", "to", "ps");
+    },
+  },
+  __date: {
+    init: function _date() {
+      ToggleMenu();
+      var backlink = document.getElementById("back-link");
+      var currentpage = document.getElementById("cr-page").value;
+      if (currentpage === "home") {
+        backlink.href = `${hostUrl}/pages/index`;
+      } else if (currentpage === "movie") {
+        backlink.href = `${hostUrl}/pages/movieshop`;
+      } else if (currentpage === "ps") {
+        backlink.href = `${hostUrl}/pages/ps`;
+      } else if (currentpage === "cyber") {
+        backlink.href = `${hostUrl}/pages/cyber`;
+      } else if (currentpage === "expense") {
+        backlink.href = `${hostUrl}/pages/expenses`;
+      } else if (currentpage === "sales") {
+        backlink.href = `${hostUrl}/pages/sales`;
+      } else if (currentpage === "net") {
+        backlink.href = `${hostUrl}/pages/net`;
+      }
     },
   },
   __daysrepo: {
