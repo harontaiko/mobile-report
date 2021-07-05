@@ -278,16 +278,22 @@ mobilereport = {
         if (lastpage === "home") {
           location.replace(`${hostUrl}/pages/index`);
         } else if (lastpage === "movie") {
+          datesRepo("filter-movie", "from", "to", "movie");
           location.replace(`${hostUrl}/pages/movieshop`);
         } else if (lastpage === "ps") {
+          datesRepo("filter-ps", "from", "to", "ps");
           location.replace(`${hostUrl}/pages/ps`);
         } else if (lastpage === "cyber") {
+          datesRepo("filter-cyber", "from", "to", "cyber");
           location.replace(`${hostUrl}/pages/cyber`);
         } else if (lastpage === "expense") {
           location.replace(`${hostUrl}/pages/expenses`);
+          datesRepo("filter-expense", "from", "to", "expense");
         } else if (lastpage === "sales") {
+          datesRepo("filter-sales", "from", "to", "sales");
           location.replace(`${hostUrl}/pages/sales`);
         } else if (lastpage === "net") {
+          datesRepo("filter-net", "from", "to", "net");
           location.replace(`${hostUrl}/pages/net`);
         }
       });

@@ -65,7 +65,7 @@
                 <input type="date" name="from" id="from">
             </div>
             <div class="input-wrapper">
-                <button value="Get" id="filter-expenses">filter report</button>
+                <button value="Get" id="filter-expense">filter report</button>
             </div>
         </article>
     </div>
