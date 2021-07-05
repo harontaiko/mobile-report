@@ -19,37 +19,53 @@
                 </tr>
             </thead>
             <tbody role="rowgroup">
+                <?php
+                $net = getFileteredReportTotal($data['date'], $data['date2'], 'net', $data['db']);
+                $arr = array();
+
+                while($y = $net->fetch_assoc())
+                {
+                    array_push($arr,$y);
+                }
+                 $row = getReportDate($data['date'], $data['date2'], 'net', $data['db']); 
+                 while($x = $row->fetch_assoc()):
+            ?>
                 <tr role="row">
-                    <td class="net" role="cell">june 21st 2020</td>
-                    <td class="net" role="cell">1,000</td>
-                    <td class="net" role="cell">950</td>
-                    <td class="net" role="cell">1,950</td>
-                    <td class="net" role="cell">Trek</td>
-                    <td class="net" role="cell">192.168.0.1</td>
+                    <td class="net" role="cell"><?php echo date('F jS Y',strtotime($x['date_created'])); ?></td>
+                    <td class="net" role="cell">
+                        <?php echo isset($x['cash_sales'])? number_format($x['cash_sales']) : 'N/A'; ?></td>
+                    <td class="net" role="cell">
+                        <?php echo isset($x['till_sales'])? number_format($x['till_sales']) : 'N/A'; ?></td>
+                    <td class="net" role="cell">
+                        <?php echo isset($x['totalexpense'])? number_format($x['totalexpense']) : 'N/A'; ?></td>
+                    <td class="net" role="cell">
+                        <?php echo isset($x['total_sales'])? number_format($x['total_sales']) : 'N/A'; ?></td>
+                    <td class="net" role="cell">
+                        <?php $total = ($x['totalincome'] + $x['total_sales']) - $x['totalexpense']; echo isset($total)? number_format($total) : 'N/A'; ?>
+                    </td>
                 </tr>
-                <tr role="row">
-                    <td class="net" role="cell">june 21st 2020</td>
-                    <td class="net" role="cell">1,000</td>
-                    <td class="net" role="cell">950</td>
-                    <td class="net" role="cell">1,950</td>
-                    <td class="net" role="cell">Trek</td>
-                    <td class="net" role="cell">192.168.0.1</td>
-                </tr>
-                <tr role="row">
-                    <td class="net" role="cell">june 21st 2020</td>
-                    <td class="net" role="cell">1,000</td>
-                    <td class="net" role="cell">950</td>
-                    <td class="net" role="cell">1,950</td>
-                    <td class="net" role="cell">Trek</td>
-                    <td class="net" role="cell">192.168.0.1</td>
-                </tr>
+                <?php endwhile ?>
                 <tr>
                     <td role="cell"></td>
-                    <td><strong>1,0000/=</strong></td>
-                    <td><strong>9500/=</strong></td>
-                    <td><strong>11,950/=</strong></td>
-                    <td role="cell"></td>
-                    <td role="cell"></td>
+                    <td><strong>
+                            <?php echo isset($arr['0']['totalcash'])? 'Total Cash '.number_format($arr['0']['totalcash']).' ksh' : 'N/A'; ?>
+                        </strong>
+                    </td>
+                    <td><strong>
+                            <?php echo isset($arr['0']['totaltill'])? 'Total Till '.number_format($arr['0']['totaltill']).' ksh' : 'N/A'; ?>
+                        </strong>
+                    </td>
+                    <td><strong>
+                            <?php echo 'Total Expense '.isset($arr['0']['expensetotal'])? 'Total Expense '.number_format($arr['0']['expensetotal']).' ksh' : 'N/A'; ?>
+                        </strong>
+                    </td>
+                    <td> <strong><?php echo isset($arr['0']['totalsales'])? 'Total Sales '.number_format($arr['0']['totalsales']).' ksh' : 'N/A'; ?></strong>
+                    </td>
+                    <td>
+                        <strong>
+                            <?php $z = ($arr['0']['incometotal'] + $arr['0']['totalsales'] - $arr['0']['expensetotal']); echo isset($z)? 'Gross '.number_format($z).' ksh' : 'N/A'; ?>
+                        </strong>
+                    </td>
                 </tr>
             </tbody>
         </table>

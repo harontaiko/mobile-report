@@ -19,35 +19,30 @@
                 </tr>
             </thead>
             <tbody role="rowgroup">
+                <?php
+                $net = getFileteredReportTotal($data['date'], $data['date2'], 'expense', $data['db']);
+
+                 $row = getReportDate($data['date'], $data['date2'], 'expense', $data['db']); 
+                 while($x = $row->fetch_assoc()):
+            ?>
                 <tr role="row">
-                    <td class="exp" role="cell">june 21st 2020</td>
-                    <td class="exp" role="cell">1,000</td>
-                    <td class="exp" role="cell">950</td>
-                    <td class="exp" role="cell">1,950</td>
-                    <td class="exp" role="cell">Trek</td>
-                    <td class="exp" role="cell">192.168.0.1</td>
+                    <td class="exp" role="cell"><?php echo date('F jS Y',strtotime($x['date_created'])); ?></td>
+                    <td class="exp" role="cell"><?php echo isset($x['expense_item'])?$x['expense_item']:''; ?></td>
+                    <td class="exp" role="cell">
+                        <?php echo isset($x['expense_cost'])?number_format($x['expense_cost']):''; ?></td>
+                    <td class="exp" role="cell">
+                        <?php echo isset($x['expense_cost'])?number_format($x['expense_cost']):''; ?></td>
+                    <td class="exp" role="cell">
+                        <?php echo isset($x['created_by'])?($x['created_by']):''; ?></td>
+                    <td class="exp" role="cell">
+                        <?php echo isset($x['creator_ip'])?($x['creator_ip']):''; ?></td>
                 </tr>
-                <tr role="row">
-                    <td class="exp" role="cell">june 21st 2020</td>
-                    <td class="exp" role="cell">1,000</td>
-                    <td class="exp" role="cell">950</td>
-                    <td class="exp" role="cell">1,950</td>
-                    <td class="exp" role="cell">Trek</td>
-                    <td class="exp" role="cell">192.168.0.1</td>
-                </tr>
-                <tr role="row">
-                    <td class="exp" role="cell">june 21st 2020</td>
-                    <td class="exp" role="cell">1,000</td>
-                    <td class="exp" role="cell">950</td>
-                    <td class="exp" role="cell">1,950</td>
-                    <td class="exp" role="cell">Trek</td>
-                    <td class="exp" role="cell">192.168.0.1</td>
-                </tr>
+                <?php endwhile ?>
                 <tr>
                     <td role="cell"></td>
                     <td></td>
-                    <td><strong>9500/=</strong></td>
-                    <td><strong>11,950/=</strong></td>
+                    <td><strong><?php echo isset($net) ? number_format($net) .' Ksh' : 'N/A'; ?></strong></td>
+                    <td><strong><?php echo isset($net) ? number_format($net) .' Ksh'  : 'N/A'; ?></strong></td>
                     <td role="cell"></td>
                     <td role="cell"></td>
                 </tr>

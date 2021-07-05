@@ -388,7 +388,7 @@ select {
 #filter-ps,
 #filter-cyber,
 #filter-sales,
-#filter-expenses {
+#filter-expense #filter-net {
   background-color: #d8315b;
   padding: 6px;
   color: #fff;
@@ -631,5 +631,49 @@ td {
   }
   .exp:nth-of-type(6):before {
     content: "Host";
+  }
+}
+
+.preloader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  margin: -20px 0 0 -20px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #fff #fff rgba(255, 255, 255, 0.5) rgba(255, 255, 255, 0.5);
+  opacity: 0.9;
+  border-radius: 20px;
+  animation: rotate 1s linear infinite;
+  -ms-animation: rotate 1s linear infinite;
+  z-index: 10000;
+}
+
+.preloader-wrapper {
+  background-color: rgba(0, 0, 0, 0.78);
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000000;
+  display: none;
+}
+
+@keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-ms-keyframes rotate {
+  0% {
+    -ms-transform: rotate(0deg);
+  }
+  100% {
+    -ms-transform: rotate(360deg);
   }
 }

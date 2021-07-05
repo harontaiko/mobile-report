@@ -127,26 +127,18 @@ class Page
 
     public function outStock()
     {
-        $instock = $this->stockCount();
+        $query2 = 'SELECT out_stock AS cnt FROM dr_stock';
 
-        $salecount = $this->saleCount();
-
-        $query1 = 'SELECT COUNT(item_id) AS `out` FROM dr_inventory WHERE item_quantity = ?';
-
-        $binders = "s";
-
-        $param = array($salecount);
-
-        $result1 = SelectCond($query1, $binders, $param, $this->db);
+        $result2 = SelectCondFree($query2, 'dr_stock', $this->db);
   
-        $row1 = $result1->get_result();
+        $row2 = $result2->get_result();
   
-        $rowItem1 = $row1->fetch_assoc();
+        $rowItem2 = $row2->fetch_assoc();
   
-        $salescount = isset($rowItem1['out']) ? $rowItem1['out'] : '0';
+        $itemcount = isset($rowItem2['cnt']) ? $rowItem2['cnt'] : '0';
   
         try {
-            return $salescount;
+            return $itemcount;
         } catch (Error $e) {
             return false;
         } 
@@ -172,24 +164,10 @@ class Page
     }
 
     public function stockCount()
-    {
-        $query1 = 'SELECT COUNT(sales_id) AS salescount FROM dr_sales';
+    {  
+        $query2 = 'SELECT in_stock AS cnt FROM dr_stock';
 
-        $result1 = SelectCondFree($query1, 'dr_sales', $this->db);
-  
-        $row1 = $result1->get_result();
-  
-        $rowItem1 = $row1->fetch_assoc();
-  
-        $salescount = isset($rowItem1['salescount']) ? $rowItem1['salescount'] : '0';
-        
-        $query2 = 'SELECT SUM(item_quantity) AS cnt FROM dr_inventory WHERE item_name !=?';
-
-        $binders = "s";
-
-        $param = array('NONE');
-
-        $result2 = SelectCond($query2, $binders, $param, $this->db);
+        $result2 = SelectCondFree($query2, 'dr_stock', $this->db);
   
         $row2 = $result2->get_result();
   
@@ -198,7 +176,7 @@ class Page
         $itemcount = isset($rowItem2['cnt']) ? $rowItem2['cnt'] : '0';
   
         try {
-            return $itemcount - $salescount;
+            return $itemcount;
         } catch (Error $e) {
             return false;
         } 

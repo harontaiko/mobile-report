@@ -98,7 +98,7 @@
                             <br>
                             <h2>Out Of Stock</h2>
                             <br>
-                            <a class="bluebutt" href="#!">N/A</a>
+                            <a class="bluebutt" href="#!"><?php echo number_format($data['out']) . ' items'; ?></a>
                             <div class="bottri"></div>
                         </div>
                     </div>
@@ -127,7 +127,7 @@
                     <input type="date" name="to" id="to">
                 </div>
                 <div class="input-wrapper">
-                    <button value="Get" id="filter-sales">filter report</button>
+                    <button value="Get" id="filter-net">filter report</button>
                 </div>
             </article>
         </div>

@@ -18,40 +18,55 @@
                     <th role="columnheader">Host Address</th>
                 </tr>
             </thead>
-            <tbody role="rowgroup">
-                <tr role="row">
-                    <td class="mv" role="cell">june 21st 2020</td>
-                    <td class="mv" role="cell">1,000</td>
-                    <td class="mv" role="cell">950</td>
-                    <td class="mv" role="cell">1,950</td>
-                    <td class="mv" role="cell">Trek</td>
-                    <td class="mv" role="cell">192.168.0.1</td>
-                </tr>
-                <tr role="row">
-                    <td class="mv" role="cell">june 21st 2020</td>
-                    <td class="mv" role="cell">1,000</td>
-                    <td class="mv" role="cell">950</td>
-                    <td class="mv" role="cell">1,950</td>
-                    <td class="mv" role="cell">Trek</td>
-                    <td class="mv" role="cell">192.168.0.1</td>
-                </tr>
-                <tr role="row">
-                    <td class="mv" role="cell">june 21st 2020</td>
-                    <td class="mv" role="cell">1,000</td>
-                    <td class="mv" role="cell">950</td>
-                    <td class="mv" role="cell">1,950</td>
-                    <td class="mv" role="cell">Trek</td>
-                    <td class="mv" role="cell">192.168.0.1</td>
-                </tr>
-                <tr>
-                    <td role="cell"></td>
-                    <td><strong>1,0000/=</strong></td>
-                    <td><strong>9500/=</strong></td>
-                    <td><strong>11,950/=</strong></td>
-                    <td role="cell"></td>
-                    <td role="cell"></td>
-                </tr>
-            </tbody>
+            <table role="table">
+                <thead role="rowgroup">
+                    <tr role="row">
+                        <th role="columnheader">Date</th>
+                        <th role="columnheader">Cash income(ksh)</th>
+                        <th role="columnheader">Till income(ksh)</th>
+                        <th role="columnheader">Net Total</th>
+                        <th role="columnheader">Created By</th>
+                        <th role="columnheader">Host Address</th>
+                    </tr>
+                </thead>
+                <tbody role="rowgroup">
+                    <?php
+                $net = getFileteredReportTotal($data['date'], $data['date2'], 'ps', $data['db']);
+                $arr = array();
+
+                while($y = $net->fetch_assoc())
+                {
+                    array_push($arr,$y);
+                }
+                 $row = getReportDate($data['date'], $data['date2'], 'ps', $data['db']); 
+                 while($x = $row->fetch_assoc()):
+                 ?>
+                    <tr role="row">
+                        <td class="mv" role="cell"><?php echo date('F jS Y',strtotime($x['date_created'])); ?></td>
+                        <td class="mv" role="cell">
+                            <?php echo isset($x['cash']) ? number_format($x['cash']) .' ksh' : 'N/A'; ?></td>
+                        <td class="mv" role="cell">
+                            <?php echo isset($x['till']) ? number_format($x['till']) .' ksh' : 'N/A'; ?></td>
+                        <td class="mv" role="cell">
+                            <?php $total = $x['cash'] + $x['till']; echo isset($total) ? number_format($total) .' ksh' : 'N/A'; ?>
+                        </td>
+                        <td class="mv" role="cell">
+                            <?php echo isset($x['created_by']) ? ($x['created_by']) : 'N/A'; ?></td>
+                        <td class="mv" role="cell">
+                            <?php echo isset($x['creator_ip']) ? ($x['creator_ip']) : 'N/A'; ?></td>
+                    </tr>
+                    <?php endwhile ?>
+                    <tr>
+                        <td role="cell"></td>
+                        <td><strong><?php echo 'Total Cash '. number_format($arr['0']['cash']).'=/' ?></strong></td>
+                        <td><strong><?php echo 'Total Till '. number_format($arr['0']['till']).'=/' ?></strong></td>
+                        <td><strong><?php echo 'Total '. number_format($arr['0']['total']).'=/' ?></strong></td>
+                        <td role="cell"></td>
+                        <td role="cell"></td>
+                    </tr>
+
+                </tbody>
+            </table>
         </table>
     </div>
 </div>

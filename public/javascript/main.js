@@ -186,6 +186,16 @@ function datesRepo(triggerId, date1Id, date2Id, pageName) {
 mobilereport = {
   __home: {
     init: function _homepage() {
+      if (document.getElementById("anime").value != "") {
+        //show animation
+        $(".preloader-wrapper").delay(3).fadeIn();
+        sleep(3500).then(() => {
+          $(".preloader-wrapper").delay(350).fadeOut("slow");
+          $("body").delay(350).css({ overflow: "visible" });
+        });
+      } else {
+        document.querySelector(".preloader-wrapper").style.display = "none";
+      }
       ToggleMenu();
       //yesterday report, 4 today, refocus page
       daysRepo("run", ".home", "home");

@@ -2,6 +2,8 @@
 
 <body class="home __home">
     <?php require(APPROOT . '/views/inc/navbar.php'); ?>
+    <?php require(APPROOT . '/views/inc/preloader.php'); ?>
+    <input type="hidden" value="<?php echo isset($_SESSION['anime']) ?  $_SESSION['anime']: '';?>" id="anime">
     <div id="rightWrapper" class="full-page">
         <div id="header" class="full-page"><a id="fullPage" href="#">|||</a></div>
         <h2 class="top-logo show">Daily Report</h2>

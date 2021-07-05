@@ -73,7 +73,8 @@
                             <br>
                             <h2>Items out of Stock</h2>
                             <br>
-                            <a class="bluebutt" href="#!">N/A</a>
+                            <a class="bluebutt"
+                                href="#!"><?php echo(number_format($data['outstock'])) . ' items'; ?></a>
                             <div class="bottri"></div>
                         </div>
                     </div>

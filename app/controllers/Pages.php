@@ -397,6 +397,7 @@ class Pages extends Controller
       $cyber = $this->pageModel->totalIncomeStation('cyber', $this->date);
       $expense = $this->pageModel->totalIncomeStation('expenses', $this->date);
       $net = $this->pageModel->getNetTotal($this->date);
+      $outstock = $this->pageModel->outStock();
       $arr = array();
 
       while($x =$itemsold->fetch_assoc())
@@ -415,6 +416,7 @@ class Pages extends Controller
          'cyber'=>$cyber,
          'expenses'=>$expense,
          'net'=>$net,
+         'out'=>$outstock
       ];
 
       $this->view('pages/net', $data);

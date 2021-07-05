@@ -16,43 +16,40 @@
                     <th role="columnheader">Sold(ksh)</th>
                     <th role="columnheader">Net Profit(ksh)</th>
                     <th role="columnheader">Sale By</th>
-                    <th role="columnheader">Invoice</th>
                 </tr>
             </thead>
             <tbody role="rowgroup">
+                <?php
+                $net = getFileteredReportTotal($data['date'], $data['date2'], 'sales', $data['db']);
+                $arr = array();
+
+                while($y = $net->fetch_assoc())
+                {
+                    array_push($arr,$y);
+                }
+                 $row = getReportDate($data['date'], $data['date2'], 'sales', $data['db']); 
+                 while($x = $row->fetch_assoc()):
+                ?>
                 <tr role="row">
-                    <td class="sl" role="cell">june 21st 2020</td>
-                    <td class="sl" role="cell">item</td>
-                    <td class="sl" role="cell">950</td>
-                    <td class="sl" role="cell">1,950</td>
-                    <td class="sl" role="cell">1,000</td>
-                    <td class="sl" role="cell">jay</td>
-                    <td class="sl" role="cell">invoice</td>.
+                    <td class="sl" role="cell"><?php echo date('F jS Y',strtotime($x['date_created'])); ?></td>
+                    <td class="sl" role="cell"><?php echo isset($x['sales_item']) ? $x['sales_item'] : 'N/A'; ?></td>
+                    <td class="sl" role="cell">
+                        <?php echo isset($x['buying_price'])? number_format($x['buying_price']) : 'N/A'; ?>
+                    </td>
+                    <td class="sl" role="cell">
+                        <?php echo isset($x['selling_price'])? number_format($x['selling_price']) : 'N/A'; ?>
+                    </td>
+                    <td class="sl" role="cell"><?php echo isset($x['profit'])? number_format($x['profit']) : 'N/A'; ?>
+                    </td>
+                    <td class="sl" role="cell"><?php echo isset($x['created_by'])? ($x['created_by']) : 'N/A'; ?></td>
                 </tr>
-                <tr role="row">
-                    <td class="sl" role="cell">june 21st 2020</td>
-                    <td class="sl" role="cell">item</td>
-                    <td class="sl" role="cell">950</td>
-                    <td class="sl" role="cell">1,950</td>
-                    <td class="sl" role="cell">1,000</td>
-                    <td class="sl" role="cell">jay</td>
-                    <td class="sl" role="cell">invoice</td>.
-                </tr>
-                <tr role="row">
-                    <td class="sl" role="cell">june 21st 2020</td>
-                    <td class="sl" role="cell">item</td>
-                    <td class="sl" role="cell">950</td>
-                    <td class="sl" role="cell">1,950</td>
-                    <td class="sl" role="cell">1,000</td>
-                    <td class="sl" role="cell">jay</td>
-                    <td class="sl" role="cell">invoice</td>.
-                </tr>
+                <?php endwhile ?>
                 <tr>
                     <td role="cell"></td>
-                    <td><strong>1,0000/=</strong></td>
-                    <td><strong>9500/=</strong></td>
-                    <td><strong>11,950/=</strong></td>
                     <td role="cell"></td>
+                    <td role="cell"></td>
+                    <td><strong><?php echo 'Sold '. number_format($arr['0']['selling']) .' ksh' ?></strong></td>
+                    <td><strong><?php echo 'Net Profit ' . number_format($arr['0']['pr']). ' ksh' ?></strong></td>
                     <td role="cell"></td>
                 </tr>
             </tbody>

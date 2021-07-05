@@ -8,6 +8,7 @@ require "helpers/mail_helper.php";
 require "helpers/session_helper.php";
 require "helpers/time_helper.php";
 require "helpers/user_helper.php";
+require "helpers/datereport_helper.php";
 //AUTO LOAD CORE
 spl_autoload_register(function ($className) {
   require "libraries/" . $className . ".php";
